@@ -120,6 +120,7 @@ public class MusicControls extends CordovaPlugin {
 		this.mediaSessionCompat = new MediaSessionCompat(context, "cordova-music-controls-media-session", null, this.mediaButtonPendingIntent);
 		this.mediaSessionCompat.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
 
+		this.notification.setMediaSession(this.mediaSessionCompat);
 
 		setMediaPlaybackState(PlaybackStateCompat.STATE_PAUSED);
 		this.mediaSessionCompat.setActive(true);

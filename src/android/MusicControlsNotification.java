@@ -12,6 +12,8 @@ import java.net.URL;
 import java.util.Random;
 import java.util.UUID;
 
+import android.media.session.MediaSession;
+import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 import android.R;
 import android.content.Context;
@@ -36,6 +38,7 @@ public class MusicControlsNotification {
 	protected MusicControlsInfos infos;
 	private Bitmap bitmapCover;
 	private String CHANNEL_ID;
+	private MediaSessionCompat mediaSession;
 
 	// Public Constructor
 	public MusicControlsNotification(Activity cordovaActivity, int id){
@@ -64,6 +67,10 @@ public class MusicControlsNotification {
 
 			this.notificationManager.createNotificationChannel(mChannel);
     	}
+	}
+
+	public void setMediaSession(MediaSessionCompat session) {
+		this.mediaSession = session;
 	}
 
 	// Show or update notification
@@ -264,7 +271,8 @@ public class MusicControlsNotification {
 			for (int i = 0; i < nbControls; ++i) {
 				args[i] = i;
 			}
-			builder.setStyle(new Notification.MediaStyle().setShowActionsInCompactView(args));
+			MediaSessionCompat.Token token = this.mediaSession.getSessionToken();
+			builder.setStyle(new Notification.MediaStyle().setMediaSession((MediaSession.Token) token.getToken()).setShowActionsInCompactView(args));
 		}
 		this.notificationBuilder = builder;
 	}
