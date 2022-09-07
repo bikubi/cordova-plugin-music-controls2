@@ -244,6 +244,7 @@ public class MusicControls extends CordovaPlugin {
 				PlaybackStateCompat.ACTION_PLAY_FROM_SEARCH);
 			playbackstateBuilder.setState(state, PlaybackStateCompat.PLAYBACK_POSITION_UNKNOWN, 0);
 		}
+		this.mediaSessionCompat.setActive(true);
 		this.mediaSessionCompat.setPlaybackState(playbackstateBuilder.build());
 	}
 
