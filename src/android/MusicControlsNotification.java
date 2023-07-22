@@ -2,6 +2,7 @@ package com.homerours.musiccontrols;
 
 import org.apache.cordova.CordovaInterface;
 
+import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -88,7 +89,7 @@ public class MusicControlsNotification {
 
 	// Toggle the play/pause button
 	public void updateIsPlaying(boolean isPlaying){
-		this.infos.isPlaying=isPlaying;
+		/*if (this.infos != null) */this.infos.isPlaying=isPlaying;
 		this.createBuilder();
 		Notification noti = this.notificationBuilder.build();
 		this.notificationManager.notify(this.notificationID, noti);
@@ -97,7 +98,7 @@ public class MusicControlsNotification {
 
 	// Toggle the dismissable status
 	public void updateDismissable(boolean dismissable){
-		this.infos.dismissable=dismissable;
+		/*if (this.infos != null) */this.infos.dismissable=dismissable;
 		this.createBuilder();
 		Notification noti = this.notificationBuilder.build();
 		this.notificationManager.notify(this.notificationID, noti);
@@ -177,19 +178,23 @@ public class MusicControlsNotification {
 		builder.setWhen(0);
 
 		// set if the notification can be destroyed by swiping
+		/*
 		if (infos.dismissable){
-			builder.setOngoing(false);
+			Log.v("MusicControlsNotification", "dismissable YES");
+			builder.setOngoing(true);
 			Intent dismissIntent = new Intent("music-controls-destroy");
 			PendingIntent dismissPendingIntent = PendingIntent.getBroadcast(context, 1, dismissIntent, PendingIntent.FLAG_IMMUTABLE);
 			builder.setDeleteIntent(dismissPendingIntent);
 		} else {
+			Log.v("MusicControlsNotification", "dismissable NO");
 			builder.setOngoing(true);
 		}
 		if (!infos.ticker.isEmpty()){
 			builder.setTicker(infos.ticker);
-		}
+		}*/
+		builder.setOngoing(false);
 
-		builder.setPriority(Notification.PRIORITY_MAX);
+		//builder.setPriority(Notification.PRIORITY_MAX);
 
 		//If 5.0 >= set the controls to be visible on lockscreen
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
