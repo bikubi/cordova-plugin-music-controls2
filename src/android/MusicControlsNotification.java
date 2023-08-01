@@ -52,7 +52,7 @@ public class MusicControlsNotification {
 		// use channelid for Oreo and higher
 		if (Build.VERSION.SDK_INT >= 26) {
 			// The user-visible name of the channel.
-			CharSequence name = "Audio Controls";
+			CharSequence name = "Audio Controls (MusicControls2)";
 			// The user-visible description of the channel.
 			String description = "Control Playing Audio";
 
