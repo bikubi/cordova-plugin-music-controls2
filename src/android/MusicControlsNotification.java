@@ -43,7 +43,7 @@ public class MusicControlsNotification {
 
 	// Public Constructor
 	public MusicControlsNotification(Activity cordovaActivity, int id){
-		this.CHANNEL_ID = UUID.randomUUID().toString();
+		this.CHANNEL_ID = "cordova-plugin-music-controls2";
 		this.notificationID = id;
 		this.cordovaActivity = cordovaActivity;
 		Context context = cordovaActivity;
