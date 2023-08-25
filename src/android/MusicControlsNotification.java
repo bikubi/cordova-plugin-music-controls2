@@ -270,6 +270,14 @@ public class MusicControlsNotification {
 			builder.addAction(this.getResourceId(infos.closeIcon, android.R.drawable.ic_menu_close_clear_cancel), "", destroyPendingIntent);
 		}
 
+		/* NOTE for adding skip fwd/back 30s:
+		 * we can add controls like this, but the process is apparently different for Android13
+		 * i.e. the following will show up on Android10 but not on 13.
+		nbControls++;
+		Intent skipIntent = new Intent("music-controls-skip");
+		PendingIntent skipPendingIntent = PendingIntent.getBroadcast(context, 1, skipIntent, PendingIntent.FLAG_IMMUTABLE);
+		builder.addAction(this.getResourceId(infos.nextIcon, android.R.drawable.ic_media_next), "", skipPendingIntent);
+		*/
 		//If 5.0 >= use MediaStyle
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
 			int[] args = new int[nbControls];
