@@ -57,6 +57,13 @@ public class MusicControlsBroadcastReceiver extends BroadcastReceiver {
 			} else if (message.equals("music-controls-media-button")){
 				// Media button
 				KeyEvent event = (KeyEvent) intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
+				// event can be null, apparently likely on Samsung phones
+				// as observed on Firebase and corroborated by https://stackoverflow.com/q/70047218/629238
+				// until better reproducibility or ideas, let's just handle this *somehow*
+				if (event == null) {
+					this.cb.success("{\"message\": \"music-controls-media-button-null\"}");
+					this.cb = null;
+				}
 				if (event.getAction() == KeyEvent.ACTION_DOWN) {
 
 					int keyCode = event.getKeyCode();
