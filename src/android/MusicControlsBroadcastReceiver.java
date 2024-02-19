@@ -63,9 +63,7 @@ public class MusicControlsBroadcastReceiver extends BroadcastReceiver {
 				if (event == null) {
 					this.cb.success("{\"message\": \"music-controls-media-button-null\"}");
 					this.cb = null;
-				}
-				if (event.getAction() == KeyEvent.ACTION_DOWN) {
-
+				} else if (event.getAction() == KeyEvent.ACTION_DOWN) {
 					int keyCode = event.getKeyCode();
 					switch (keyCode) {
 						case KeyEvent.KEYCODE_MEDIA_NEXT:
